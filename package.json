@@ -1,0 +1,28 @@
+{
+  "license": "MIT",
+  "version": "0.0.1",
+  "author": "Herman Geldenhuys",
+  "name": "mxbuild.docker",
+  "description": "Mendix Docker Utility",
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "help": "ts-node src/index.ts --help",
+    "list versions": "ts-node src/index.ts --list-versions",
+    "build": "tsc -p .",
+    "build:live": "nodemon --watch 'src/*.ts' --watch 'src/*/*.ts' --exec 'ts-node' src/index.ts"
+  },
+  "devDependencies": {
+    "@types/figlet": "^1.2.0",
+    "@types/node": "^12.7.7",
+    "@types/yargs": "^13.0.2",
+    "nodemon": "^1.19.2",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.3"
+  },
+  "dependencies": {
+    "ascii-art": "^1.5.1",
+    "chalk": "^2.4.2",
+    "figlet": "^1.2.4",
+    "yargs": "^14.0.0"
+  }
+}
