@@ -1,3 +1,4 @@
 export interface OptionsInterface {
-    json: boolean
+    json: boolean,
+    tmp: string
 }

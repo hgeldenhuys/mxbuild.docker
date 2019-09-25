@@ -8,8 +8,10 @@
     "start": "ts-node src/index.ts",
     "help": "ts-node src/index.ts --help",
     "list versions": "ts-node src/index.ts --list-versions",
+    "version 8.1.1": "ts-node src/index.ts --download-version 8.1.1",
     "build": "tsc -p .",
-    "build:live": "nodemon --watch 'src/*.ts' --watch 'src/*/*.ts' --exec 'ts-node' src/index.ts"
+    "build:live": "nodemon --watch 'src/*.ts' --watch 'src/*/*.ts' --exec 'ts-node' src/index.ts",
+    "docker:build": "docker build -t mxbuild ."
   },
   "devDependencies": {
     "@types/figlet": "^1.2.0",
@@ -20,9 +22,11 @@
     "typescript": "^3.6.3"
   },
   "dependencies": {
+    "@types/unzip": "^0.1.1",
     "ascii-art": "^1.5.1",
     "chalk": "^2.4.2",
     "figlet": "^1.2.4",
+    "unzip": "^0.1.11",
     "yargs": "^14.0.0"
   }
 }

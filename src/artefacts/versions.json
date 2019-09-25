@@ -1,12 +1,8 @@
 {
   "versions": [
     {
-      "version": "8.1.0",
-      "modelerUrl": "https://appstore.home.mendix.com/file?guid=3096224743830437&changedDate=1567429265117&name=Mendix-8.1.0.57981-Setup.exe&target=internal"
-    },
-    {
       "version": "8.1.1",
-      "modelerUrl": "https://appstore.home.mendix.com/file?guid=3096224743830438&changedDate=1568115643551&name=Mendix-8.1.1.58432-Setup.exe&target=internal"
+      "modelerUrl": "http://files.herman.codes/mx-files/mendix-8.1.1.58432.zip"
     }
   ]
 }
