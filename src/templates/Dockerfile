@@ -9,7 +9,8 @@ ARG DEBIAN_FRONTEND=noninteractive
 ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn
 # Example Mendix version that will be copied into the image (Runtime & Modeler)
 #ADD tmp/8.1.1 /mendix
-ADD modeler runtime /mendix/
+ADD runtime /mendix/runtime
+ADD modeler /mendix/modeler
 # Routine apt get update
 RUN apt-get update
 # This is required for wget for some reason
