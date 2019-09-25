@@ -2,14 +2,14 @@
 # THIS IS A DOCKER FILE TEMPLATE WITH COMMENTS
 # Use Ubuntu obviously
 #FROM ubuntu:19.10
-FROM gizmotronic/oracle-java:java8
+FROM dockerImage
 # Apt-Get for some reason want locale settings so this is to override that during installation
 ARG DEBIAN_FRONTEND=noninteractive
 # Ignore warnings from apt key that might block when we add Mendix' key
 ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn
 # Example Mendix version that will be copied into the image (Runtime & Modeler)
 #ADD tmp/8.1.1 /mendix
-ADD modeler runtime /mendix
+ADD modeler runtime /mendix/
 # Routine apt get update
 RUN apt-get update
 # This is required for wget for some reason

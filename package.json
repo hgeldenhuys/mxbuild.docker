@@ -9,6 +9,7 @@
     "help": "ts-node src/index.ts --help",
     "list versions": "ts-node src/index.ts --list-versions",
     "version 8.1.1": "ts-node src/index.ts --download-version 8.1.1",
+    "version 6.10.10": "ts-node src/index.ts --download-version 6.10.10",
     "build": "tsc -p .",
     "build:live": "nodemon --watch 'src/*.ts' --watch 'src/*/*.ts' --exec 'ts-node' src/index.ts",
     "docker:build": "docker build -t mxbuild ."
@@ -16,6 +17,7 @@
   "devDependencies": {
     "@types/figlet": "^1.2.0",
     "@types/node": "^12.7.7",
+    "@types/shelljs": "^0.8.5",
     "@types/yargs": "^13.0.2",
     "nodemon": "^1.19.2",
     "ts-node": "^8.4.1",
@@ -26,6 +28,7 @@
     "ascii-art": "^1.5.1",
     "chalk": "^2.4.2",
     "figlet": "^1.2.4",
+    "shelljs": "^0.8.3",
     "unzip": "^0.1.11",
     "yargs": "^14.0.0"
   }
