@@ -1,20 +1,21 @@
 import {OptionsInterface} from "../interfaces/options.interface";
 import * as fs from "fs";
+import {VersionInterface, VersionsInterface} from "../interfaces/versions.interface";
 
-const versions = require("../artefacts/versions.json");
+const versions = require("../artefacts/versions.json") as VersionsInterface;
 
 export default function (options: OptionsInterface) {
-    versions.versions.forEach((version: {version: string, modelerUrl: string, cacheAvailable: boolean}) => {
-        const cachePath = `/tmp/cache/${version.modelerUrl.replace("http://files.herman.codes/mx-files/", "")}`;
+    versions.versions.forEach((version) => {
+        const cachePath = `${options.tmp}/${version.modelerUrl.substr(version.modelerUrl.lastIndexOf("/")+1)}`;
         version.cacheAvailable = fs.existsSync(cachePath);
     });
     if (options.json) {
-        return versions;
+        return JSON.stringify(versions);
     } else {
         return `Supported Mendix distribution versions: \n - ${
             versions.versions.map((version: {version: string, modelerUrl: string, cacheAvailable: boolean}) => {
                 
-                return version.version + " " + (version.cacheAvailable ? "cached 📦" : "internet 🌎");
+                return (version.cacheAvailable ? "📦 " : "🌎 ") + version.version + " " + (version.cacheAvailable ? "cached" : "internet");
             }).join("\n - ")
         }`;
     }

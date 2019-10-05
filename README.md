@@ -30,4 +30,4 @@ but these files can be hosted anywhere and updated in the ${project-folder}/arte
 ```
 
 Once a version is downloaded, it unzips the content in ${project-folder}/tmp which is the same folder 
-containing the zipfile.
+containing the zip-file.

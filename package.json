@@ -7,8 +7,12 @@
   "scripts": {
     "start": "ts-node src/index.ts",
     "help": "ts-node src/index.ts --help",
+    "build-docker": "ts-node src/index.ts build-docker --deployment-source ",
     "list versions": "ts-node src/index.ts --list-versions",
-    "version 8.1.1": "ts-node src/index.ts --download-version 8.1.1",
+    "list versions:json": "ts-node src/index.ts --list-versions --json",
+    "version 8.1.1.58432": "ts-node src/index.ts --download-version 8.1.1.58432",
+    "version 7.23.6.53654": "ts-node src/index.ts --download-version 7.23.6.53654",
+    "version 6.10.18": "ts-node src/index.ts --download-version 6.10.18",
     "version 6.10.10": "ts-node src/index.ts --download-version 6.10.10",
     "build": "tsc -p .",
     "build:live": "nodemon --watch 'src/*.ts' --watch 'src/*/*.ts' --exec 'ts-node' src/index.ts",
@@ -24,11 +28,18 @@
     "typescript": "^3.6.3"
   },
   "dependencies": {
+    "@types/cli-progress": "^1.8.1",
+    "@types/fs-extra": "^8.0.0",
+    "@types/targz": "^1.0.0",
     "@types/unzip": "^0.1.1",
     "ascii-art": "^1.5.1",
     "chalk": "^2.4.2",
+    "cli-progress": "^3.1.0",
     "figlet": "^1.2.4",
+    "fs-extra": "^8.1.0",
+    "request-progress": "^3.0.0",
     "shelljs": "^0.8.3",
+    "targz": "^1.0.1",
     "unzip": "^0.1.11",
     "yargs": "^14.0.0"
   }
