@@ -11,8 +11,8 @@ RUN apt-get install -y tzdata
 RUN ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime
 RUN dpkg-reconfigure --frontend noninteractive tzdata
 # Mendix version that will be copied into the image (Runtime, Modeler & Sample App)
-#ADD runtime /mendix/runtime
-#ADD modeler /mendix/modeler
+ADD runtime /mendix/runtime
+ADD modeler /mendix/modeler
 ADD buildpack /mendix/buildpack
 ADD app /mendix/app
 ADD app /mendix/app2
@@ -23,9 +23,9 @@ RUN apt-get update
 RUN apt-get -y install wget
 RUN apt-get -y install tar
 RUN apt-get -y install vim
-RUN apt-get -y install python3
+#RUN apt-get -y install python3
 RUN apt-get -y install git
-RUN apt-get -y install mono-mcs
+#RUN apt-get -y install mono-mcs
 RUN apt-get -y install nginx
 ADD mxbuild.nginx /etc/nginx/sites-available/default
 #RUN npm -g install ts-node

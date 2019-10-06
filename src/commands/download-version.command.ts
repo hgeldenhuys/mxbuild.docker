@@ -42,7 +42,7 @@ export default async (options: OptionsInterface, yargs: Argv) => {
             // log(`🧐 creating ${targetMonoConfig}`);
             // fs.writeFileSync(`${targetMonoConfig}`, sourceMonoConfig);
             log(`🐳 Building docker image`);
-            shell.exec(`cd tmp/${version.version} && docker build -t hgeldenhuys/mxbuild:${version.version} .`);
+            shell.exec(`cd tmp/${version.version} && docker build -t hgeldenhuys/mxbuild:${version.version} . && docker tag hgeldenhuys/mxbuild:${version.version} hgeldenhuys/mxbuild:${version.version}`);// && docker push hgeldenhuys/mxbuild:${version.version}`);
         } catch (e) {
             console.error(e);
         }
