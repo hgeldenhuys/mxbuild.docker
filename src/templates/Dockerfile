@@ -23,9 +23,10 @@ RUN apt-get update
 RUN apt-get -y install wget
 RUN apt-get -y install tar
 RUN apt-get -y install vim
+RUN apt-get -y install vim
 #RUN apt-get -y install python3
 RUN apt-get -y install git
-#RUN apt-get -y install mono-mcs
+RUN apt-get -y install mono-mcs
 RUN apt-get -y install nginx
 ADD mxbuild.nginx /etc/nginx/sites-available/default
 #RUN npm -g install ts-node
@@ -39,7 +40,14 @@ ENV MONO_STRICT_MS_COMPLIANT=yes
 ENV TERM=xterm
 ENV DATABASE_URL=sqlserver://username:password@host:port/mendix
 # Make sure the builderrors.json exists, sometimes the compile command complains about this
-RUN /cf-mendix-buildpack/bin/compile /mendix/app /mendix/deploy
+#RUN /cf-mendix-buildpack/bin/compile /mendix/app /mendix/deploy
+
+ADD .local /mendix/app/.local
+ADD opt /tmp/opt
+#ADD lib/python2.7 /usr/lib/python2.7
+#ADD lib/python3 /usr/lib/python3
+#ADD lib/python3.4 /usr/lib/python3.4
+
 RUN mkdir -p /tmp
 RUN touch /tmp/builderrors.json
 patchCommands
@@ -51,10 +59,23 @@ WORKDIR /etc/nginx/sites-enabled
 RUN service nginx start
 #RUN nginx -s reload
 #RUN cd bin/compile /project /project/deploy
-EXPOSE 8080
+EXPOSE servePort
+EXPOSE 3000
 RUN update-rc.d nginx enable
+RUN chmod -R 775 /tmp/opt/monoVersion/bin
+RUN chmod -R 775 /mendix/app/.local/usr/lib/jvm/javaVersion/bin
 WORKDIR /
-CMD ["sh","-c"," service nginx start && /tmp/opt/mono-3.10.0/bin/mono --config /tmp/opt/mono-3.10.0/etc/mono/config /mendix/modeler/mxbuild.exe --java-home=/mendix/app/.local/usr/lib/jvm/jdk-8u202-oracle-x64 --java-exe-path=/mendix/app/.local/usr/lib/jvm/jdk-8u202-oracle-x64/bin/java --serve --port=6666"]
+
+RUN apt-get -y install curl
+RUN curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+RUN apt-get -y install nodejs
+
+ADD api /api
+WORKDIR /api
+RUN npm install
+
+CMD ["sh","-c","node ."]
+#CMD ["sh","-c"," service nginx start && /tmp/opt/monoVersion/bin/mono --config /tmp/opt/monoVersion/etc/mono/config /mendix/modeler/mxbuild.exe --java-home=/mendix/app/.local/usr/lib/jvm/javaVersion --java-exe-path=/mendix/app/.local/usr/lib/jvm/javaVersion/bin/java --serve --port=6666"]
 #CMD [ "service", "nginx", "start"]
 #CMD [ "/tmp/opt/mono-3.10.0/bin/mono", "--config", "/tmp/opt/mono-3.10.0/etc/mono/config", "/mendix/modeler/mxbuild.exe", "--java-home=/mendix/app/.local/usr/lib/jvm/jdk-8u202-oracle-x64", "--java-exe-path=/mendix/app/.local/usr/lib/jvm/jdk-8u202-oracle-x64/bin/java", "--serve", "--port=6666"]
 #CMD [  "mono", "/mendix/modeler/mxbuild.exe", "--serve", "--java-home=/usr/lib/jvm/java-11-openjdk-amd64", "--java-exe-path=/usr/lib/jvm/java-11-openjdk-amd64/bin/java", "--port=7575" ]

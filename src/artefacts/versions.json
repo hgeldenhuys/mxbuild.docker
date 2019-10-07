@@ -15,18 +15,21 @@
       "patchCommands": ""
     },
     {
-      "version": "6.10.10",
-      "modelerUrl": "http://cdn.mendix.com/runtime/mxbuild-6.10.10.tar.gz",
-      "dockerImage": "mendix/rootfs",
-      "javaIncludedInVM": true,
-      "patchCommands": "RUN mkdir /t\nRUN mv /usr/lib/libgdiplus* /t/.\nRUN cp /tmp/opt/mono-3.10.0/lib/lib* /usr/lib/"
-    },
-    {
       "version": "6.10.18",
       "modelerUrl": "http://cdn.mendix.com/runtime/mxbuild-6.10.18.tar.gz",
       "dockerImage": "mendix/rootfs",
-      "javaIncludedInVM": true,
-      "patchCommands": ""
+      "javaVersion": "jdk-8u202-oracle-x64",
+      "monoVersion": "mono-3.10.0",
+      "patchCommands": "RUN mkdir /t\nRUN mv /usr/lib/libgdiplus* /t/.\nRUN cp /tmp/opt/mono-3.10.0/lib/lib* /usr/lib/"
+    },
+    {
+      "version": "6.10.10",
+      "modelerUrl": "http://cdn.mendix.com/runtime/mxbuild-6.10.10.tar.gz",
+      "dockerImage": "mendix/rootfs",
+      "javaVersion": "jdk-8u202-oracle-x64",
+      "monoVersion": "mono-3.10.0",
+      "servePort": 61010,
+      "patchCommands": "RUN mkdir /t\nRUN mv /usr/lib/libgdiplus* /t/.\nRUN cp /tmp/opt/mono-3.10.0/lib/lib* /usr/lib/"
     }
   ]
 }

@@ -31,6 +31,9 @@ export default async (options: OptionsInterface, yargs: Argv) => {
             // let sourceMonoConfig = fs.readFileSync(`${__dirname}/../templates/mono.config`, 'utf8').toString();
             sourceDockerFile = sourceDockerFile
                 .replace(/patchCommands/g, version.patchCommands)
+                .replace(/monoVersion/g, version.monoVersion)
+                .replace(/javaVersion/g, version.javaVersion)
+                .replace(/servePort/g, version.servePort)
                 .replace(/dockerImage/g, version.dockerImage);
             if (fs.existsSync(`${__dirname}/../../tmp/${version.version}/Dockerfile`)) {
                 fs.unlinkSync(`${__dirname}/../../tmp/${version.version}/Dockerfile`);
